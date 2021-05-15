@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from "./Pages/Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Questions from "./Pages/Questions";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "rgb(230, 227, 227)",
+    },
+  },
+});
 
 function App() {
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/products")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/:quiz">
+              <Questions />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 
