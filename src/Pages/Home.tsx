@@ -3,9 +3,24 @@ import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
-import iconCss3 from "./../assets/css3.png";
-import iconHtml from "./../assets/html5.png";
+import iconCss3 from "./../assets/css.png";
+import iconHtml from "./../assets/html.png";
 import iconJs from "./../assets/javascript.png";
+
+const componentVariants = {
+  initial: {
+    x: "-100vw",
+  },
+  animate: {
+    x: 0,
+  },
+  exit: {
+    x: "-100vw",
+    transtion: {
+      duration: 1,
+    },
+  },
+};
 
 const variants = {
   initial: { x: -1500 },
@@ -18,12 +33,12 @@ const Home: React.FC = () => {
   const quizes = [
     {
       name: "HTML",
-      icon: iconCss3,
+      icon: iconHtml,
       borderColor: "",
     },
     {
       name: "CSS",
-      icon: iconHtml,
+      icon: iconCss3,
       borderColor: "",
     },
     {
@@ -33,7 +48,13 @@ const Home: React.FC = () => {
     },
   ];
   return (
-    <div className="home">
+    <motion.div
+      variants={componentVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="home"
+    >
       <div className="title">
         <h1>Welcome to the Front End Development Quiz !</h1>
         <h2> Select a quiz that you want to take ! </h2>
@@ -64,7 +85,7 @@ const Home: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

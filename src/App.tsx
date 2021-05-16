@@ -1,7 +1,13 @@
 import Home from "./Pages/Home";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Questions from "./Pages/Questions";
+import { AnimatePresence } from "framer-motion";
 
 const theme = createMuiTheme({
   palette: {
@@ -12,11 +18,12 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const location = useLocation();
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Router>
-          <Switch>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.key}>
             <Route exact path="/">
               <Home />
             </Route>
@@ -24,7 +31,7 @@ function App() {
               <Questions />
             </Route>
           </Switch>
-        </Router>
+        </AnimatePresence>
       </div>
     </ThemeProvider>
   );

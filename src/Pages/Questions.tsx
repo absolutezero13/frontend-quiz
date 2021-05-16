@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import cssIcon from "./../assets/css.png";
+import htmlIcon from "./../assets/html.png";
+import javascriptIcon from "./../assets/javascript.png";
 
 interface ParamTypes {
   quiz: string;
@@ -18,12 +21,16 @@ const Questions: React.FC = () => {
   const params = useParams<ParamTypes>();
 
   const fetchQuestions = async () => {
-    const data = await fetch(
-      `http://localhost:3001/quizquestions/${params.quiz}`
-    );
-    const res = await data.json();
+    try {
+      const data = await fetch(
+        `http://localhost:3001/quizquestions/${params.quiz}`
+      );
+      const res = await data.json();
 
-    setQuestions(res);
+      if (res.length > 0) setQuestions(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -32,22 +39,40 @@ const Questions: React.FC = () => {
 
   return (
     <div className="questions">
-      <h1> {params.quiz.toUpperCase()} Quiz </h1>
-      <h2> {questionNumber} </h2>
-
-      {questions && (
-        <div>
-          <div>
-            <p> {questions[questionNumber].question} </p>
+      <div className="questions__icon">
+        <img
+          width={128}
+          height={128}
+          src={
+            params.quiz === "html"
+              ? htmlIcon
+              : params.quiz === "css"
+              ? cssIcon
+              : javascriptIcon
+          }
+          alt=""
+        />
+      </div>
+      {questions ? (
+        <div className="questions__question">
+          <div className="questions__question__question-text">
+            <p>
+              {questionNumber}. {questions[questionNumber].question}{" "}
+            </p>
           </div>
-          {questions[questionNumber].answers.map((option) => {
-            return (
-              <div key={option._id}>
-                <p> {option.option} </p>
-              </div>
-            );
-          })}
+
+          <div className="questions__question__options">
+            {questions[questionNumber].answers.map((option) => {
+              return (
+                <div className="questions__question__option" key={option._id}>
+                  <p> {option.option} </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      ) : (
+        <p>Loading...</p>
       )}
     </div>
   );
