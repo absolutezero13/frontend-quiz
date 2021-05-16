@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import Option from "../Components/Option";
@@ -14,6 +15,18 @@ interface Question {
   answers: any[];
   isCorrect: boolean;
 }
+
+const variants = {
+  initial: {
+    x: "100vw",
+  },
+  animate: {
+    x: 0,
+  },
+  exit: {
+    x: "100vw",
+  },
+};
 
 const Questions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>();
@@ -40,7 +53,13 @@ const Questions: React.FC = () => {
   }, []);
 
   return (
-    <div className="questions">
+    <motion.div
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="questions"
+    >
       <div className="questions__icon">
         <img
           width={128}
@@ -73,7 +92,7 @@ const Questions: React.FC = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </motion.div>
   );
 };
 
