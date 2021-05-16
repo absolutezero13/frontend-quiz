@@ -12,15 +12,6 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/products")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
