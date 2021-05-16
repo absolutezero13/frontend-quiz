@@ -23,7 +23,6 @@
       border: solid 0.5px $text-color;
       border-radius: 5px;
       margin-bottom: 1.5rem;
-      background-color: darken($bg-color, 1%);
       cursor: pointer;
       &:hover {
         background-color: lighten($bg-color, 1%);

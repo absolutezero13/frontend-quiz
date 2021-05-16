@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import Option from "../Components/Option";
 import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
 import javascriptIcon from "./../assets/javascript.png";
@@ -17,6 +18,7 @@ interface Question {
 const Questions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [questionNumber, setQuestionNumber] = useState<number>(1);
+  const [optionBgColor, setOptionBgColor] = useState("black");
   const history = useHistory();
   const params = useParams<ParamTypes>();
 
@@ -57,17 +59,14 @@ const Questions: React.FC = () => {
         <div className="questions__question">
           <div className="questions__question__question-text">
             <p>
-              {questionNumber}. {questions[questionNumber].question}{" "}
+              {questionNumber}. {questions[questionNumber].question}
             </p>
           </div>
 
           <div className="questions__question__options">
             {questions[questionNumber].answers.map((option) => {
-              return (
-                <div className="questions__question__option" key={option._id}>
-                  <p> {option.option} </p>
-                </div>
-              );
+              console.log(option);
+              return <Option key={option._id} option={option} />;
             })}
           </div>
         </div>
