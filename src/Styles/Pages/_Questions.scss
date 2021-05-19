@@ -33,9 +33,17 @@
   }
 }
 
+@keyframes modalOpening {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 .ReactModal__Overlay {
   opacity: 0;
-  transition: opacity 500ms ease-in-out;
+  transition: opacity 800ms ease-in-out;
 }
 
 .ReactModal__Overlay--after-open {

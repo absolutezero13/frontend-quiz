@@ -29,9 +29,7 @@ const Option: React.FC<Props> = ({
       setOptionBgColor("red");
     }
 
-    setTimeout(() => {
-      setIsModalOpen(true);
-    }, 500);
+    setIsModalOpen(true);
   };
 
   return (
