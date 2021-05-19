@@ -6,11 +6,13 @@ interface Option {
   option: string;
   isCorrect: boolean;
 }
+
 interface Props {
   option: Option;
   isDisabled: boolean;
   setIsDisabled: (arg: boolean) => void;
   setIsModalOpen: (arg: boolean) => void;
+  setIsCorrect: (arg: boolean) => void;
 }
 
 const Option: React.FC<Props> = ({
@@ -18,6 +20,7 @@ const Option: React.FC<Props> = ({
   isDisabled,
   setIsDisabled,
   setIsModalOpen,
+  setIsCorrect,
 }) => {
   const [optionBgColor, setOptionBgColor] = useState("black");
 
@@ -25,8 +28,10 @@ const Option: React.FC<Props> = ({
     setIsDisabled(true);
     if (option.isCorrect) {
       setOptionBgColor("green");
+      setIsCorrect(true);
     } else {
       setOptionBgColor("red");
+      setIsCorrect(false);
     }
 
     setIsModalOpen(true);

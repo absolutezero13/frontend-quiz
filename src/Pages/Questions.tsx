@@ -32,6 +32,7 @@ const variants = {
 const Questions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [questionNumber, setQuestionNumber] = useState<number>(1);
+  const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
   const [isDisabled, setIsDisabled] = useState(false);
@@ -90,6 +91,7 @@ const Questions: React.FC = () => {
               return (
                 <Option
                   isDisabled={isDisabled}
+                  setIsCorrect={setIsCorrect}
                   setIsDisabled={setIsDisabled}
                   setIsModalOpen={setIsModalOpen}
                   key={option._id}
@@ -102,7 +104,7 @@ const Questions: React.FC = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <AnswerModal isModalOpen={isModalOpen} />
+      <AnswerModal isCorrect={isCorrect} isModalOpen={isModalOpen} />
     </motion.div>
   );
 };
