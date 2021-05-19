@@ -1,3 +1,4 @@
+import { truncateSync } from "fs";
 import React, { useState } from "react";
 
 interface Option {
@@ -5,22 +6,38 @@ interface Option {
   option: string;
   isCorrect: boolean;
 }
+interface Props {
+  option: Option;
+  isDisabled: boolean;
+  setIsDisabled: (arg: boolean) => void;
+  setIsModalOpen: (arg: boolean) => void;
+}
 
-const Option: React.FC<any> = ({ option }) => {
+const Option: React.FC<Props> = ({
+  option,
+  isDisabled,
+  setIsDisabled,
+  setIsModalOpen,
+}) => {
   const [optionBgColor, setOptionBgColor] = useState("black");
 
   const answerQuestion = () => {
+    setIsDisabled(true);
     if (option.isCorrect) {
       setOptionBgColor("green");
     } else {
       setOptionBgColor("red");
     }
+
+    setTimeout(() => {
+      setIsModalOpen(true);
+    }, 500);
   };
 
   return (
     <button
       onClick={answerQuestion}
-      disabled={false} //disable func için
+      disabled={isDisabled} //disable func için
       style={{ backgroundColor: optionBgColor }}
       className="questions__question__option"
       key={option._id}

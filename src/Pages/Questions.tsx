@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import AnswerModal from "../Components/AnswerModal";
 import Option from "../Components/Option";
 import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
@@ -31,8 +32,10 @@ const variants = {
 const Questions: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [questionNumber, setQuestionNumber] = useState<number>(1);
-  const [optionBgColor, setOptionBgColor] = useState("black");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const params = useParams<ParamTypes>();
 
   const fetchQuestions = async () => {
@@ -84,14 +87,22 @@ const Questions: React.FC = () => {
 
           <div className="questions__question__options">
             {questions[questionNumber].answers.map((option) => {
-              console.log(option);
-              return <Option key={option._id} option={option} />;
+              return (
+                <Option
+                  isDisabled={isDisabled}
+                  setIsDisabled={setIsDisabled}
+                  setIsModalOpen={setIsModalOpen}
+                  key={option._id}
+                  option={option}
+                />
+              );
             })}
           </div>
         </div>
       ) : (
         <p>Loading...</p>
       )}
+      <AnswerModal isModalOpen={isModalOpen} />
     </motion.div>
   );
 };
