@@ -1,48 +1,72 @@
-import { motion } from "framer-motion";
 import React from "react";
+import IconAnswer from "./IconAnswer";
+import { motion } from "framer-motion";
 import Modal from "react-modal";
-import Checkmark from "./Checkmark";
+import { Button } from "@material-ui/core";
 
 const modalStyles = {
   overlay: {
-    backgroundColor: "rgba(29, 26, 26, 0.584)",
+    backgroundColor: "rgba(29, 26, 26, 0.984)",
   },
   content: {
-    width: "25rem",
-    height: "15rem",
+    width: "35rem",
+    height: "20rem",
     top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    backgroundColor: "rgba(29, 26, 26, 0.284)",
   },
-};
-
-const variants = {
-  hidden: { y: "-100vh" },
-  visible: { y: 0 },
 };
 
 interface Props {
   isModalOpen: boolean;
   isCorrect: boolean | undefined;
+  setQuestionNumber: (arg: any) => any;
+  setIsModalOpen: (arg: boolean) => void;
+  setIsDisabled: (arg: boolean) => void;
 }
 
-const AnswerModal: React.FC<Props> = ({ isModalOpen, isCorrect }) => {
+const AnswerModal: React.FC<Props> = ({
+  isModalOpen,
+  isCorrect,
+  setQuestionNumber,
+  setIsModalOpen,
+  setIsDisabled,
+}) => {
+  const nextQuestion = () => {
+    setIsDisabled(false);
+    setIsModalOpen(false);
+    setQuestionNumber((prevNumber: number) => prevNumber + 1);
+  };
+
   return (
-    <motion.div variants={variants} initial="hidden" animate="visible">
-      <Modal style={modalStyles} isOpen={isModalOpen}>
-        {isCorrect ? (
-          <>
-            <Checkmark />
-            <p> CORRECT ANSWER !</p>{" "}
-          </>
-        ) : (
-          <p>WRONG ANSWER !</p>
-        )}
-      </Modal>
-    </motion.div>
+    <Modal style={modalStyles} isOpen={isModalOpen}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {<IconAnswer isCorrect={isCorrect} />}
+        <Button
+          variant="outlined"
+          onClick={nextQuestion}
+          className="icon-button"
+          style={{
+            backgroundColor: "white",
+            fontFamily: "inherit",
+            fontSize: "1.6rem",
+            marginTop: "1rem",
+          }}
+        >
+          Next Question
+        </Button>
+      </div>
+    </Modal>
   );
 };
 

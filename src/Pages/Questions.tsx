@@ -34,6 +34,8 @@ const Questions: React.FC = () => {
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [points, setPoints] = useState(0);
+
   const history = useHistory();
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -94,6 +96,7 @@ const Questions: React.FC = () => {
                   setIsCorrect={setIsCorrect}
                   setIsDisabled={setIsDisabled}
                   setIsModalOpen={setIsModalOpen}
+                  setPoints={setPoints}
                   key={option._id}
                   option={option}
                 />
@@ -104,7 +107,13 @@ const Questions: React.FC = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <AnswerModal isCorrect={isCorrect} isModalOpen={isModalOpen} />
+      <AnswerModal
+        setIsModalOpen={setIsModalOpen}
+        setQuestionNumber={setQuestionNumber}
+        isCorrect={isCorrect}
+        isModalOpen={isModalOpen}
+        setIsDisabled={setIsDisabled}
+      />
     </motion.div>
   );
 };
