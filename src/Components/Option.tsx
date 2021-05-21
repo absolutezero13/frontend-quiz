@@ -28,13 +28,12 @@ const Option: React.FC<Props> = ({
 
   const answerQuestion = () => {
     setIsDisabled(true);
+    setIsCorrect(option.isCorrect);
     if (option.isCorrect) {
       setOptionBgColor("green");
-      setIsCorrect(true);
       setPoints((prevPoints: number) => prevPoints + 1);
     } else {
       setOptionBgColor("red");
-      setIsCorrect(false);
     }
 
     setIsModalOpen(true);

@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 
 const modalStyles = {
   overlay: {
-    backgroundColor: "rgba(29, 26, 26, 0.984)",
+    backgroundColor: "rgba(29, 26, 26, 0.784)",
   },
   content: {
     width: "35rem",
@@ -17,7 +17,7 @@ const modalStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "rgba(29, 26, 26, 0.284)",
+    backgroundColor: "rgba(29, 26, 26, 0.584)",
   },
 };
 
@@ -36,7 +36,7 @@ const AnswerModal: React.FC<Props> = ({
   setIsModalOpen,
   setIsDisabled,
 }) => {
-  const nextQuestion = () => {
+  const handleNextQuestion = () => {
     setIsDisabled(false);
     setIsModalOpen(false);
     setQuestionNumber((prevNumber: number) => prevNumber + 1);
@@ -54,7 +54,7 @@ const AnswerModal: React.FC<Props> = ({
         {<IconAnswer isCorrect={isCorrect} />}
         <Button
           variant="outlined"
-          onClick={nextQuestion}
+          onClick={handleNextQuestion}
           className="icon-button"
           style={{
             backgroundColor: "white",
