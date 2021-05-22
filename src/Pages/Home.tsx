@@ -1,8 +1,9 @@
 import { Card, Icon, IconButton } from "@material-ui/core";
 import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { context } from "../Context/Context";
 import iconCss3 from "./../assets/css.png";
 import iconHtml from "./../assets/html.png";
 import iconJs from "./../assets/javascript.png";
@@ -30,6 +31,12 @@ const variants = {
 };
 
 const Home: React.FC = () => {
+  const { setQuestionNumber } = useContext(context);
+
+  useEffect(() => {
+    setQuestionNumber(1);
+  }, []);
+
   const quizes = [
     {
       name: "HTML",
@@ -47,6 +54,7 @@ const Home: React.FC = () => {
       borderColor: "",
     },
   ];
+
   return (
     <motion.div
       variants={componentVariants}

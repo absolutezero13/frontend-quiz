@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import IconAnswer from "./IconAnswer";
 import { motion } from "framer-motion";
 import Modal from "react-modal";
 import { Button } from "@material-ui/core";
+import { context } from "../Context/Context";
 
 const modalStyles = {
   overlay: {
@@ -21,21 +22,15 @@ const modalStyles = {
   },
 };
 
-interface Props {
-  isModalOpen: boolean;
-  isCorrect: boolean | undefined;
-  setQuestionNumber: (arg: any) => any;
-  setIsModalOpen: (arg: boolean) => void;
-  setIsDisabled: (arg: boolean) => void;
-}
+const AnswerModal = () => {
+  const {
+    isModalOpen,
+    isCorrect,
+    setQuestionNumber,
+    setIsModalOpen,
+    setIsDisabled,
+  } = useContext(context);
 
-const AnswerModal: React.FC<Props> = ({
-  isModalOpen,
-  isCorrect,
-  setQuestionNumber,
-  setIsModalOpen,
-  setIsDisabled,
-}) => {
   const handleNextQuestion = () => {
     setIsDisabled(false);
     setIsModalOpen(false);
@@ -51,7 +46,7 @@ const AnswerModal: React.FC<Props> = ({
           alignItems: "center",
         }}
       >
-        {<IconAnswer isCorrect={isCorrect} />}
+        {<IconAnswer />}
         <Button
           variant="outlined"
           onClick={handleNextQuestion}

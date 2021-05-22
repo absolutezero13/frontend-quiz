@@ -8,6 +8,7 @@ import {
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Questions from "./Pages/Questions";
 import { AnimatePresence } from "framer-motion";
+import { ContextProvider } from "./Context/Context";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,20 +21,22 @@ const theme = createMuiTheme({
 function App() {
   const location = useLocation();
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <AnimatePresence exitBeforeEnter>
-          <Switch location={location} key={location.key}>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/:quiz">
-              <Questions />
-            </Route>
-          </Switch>
-        </AnimatePresence>
-      </div>
-    </ThemeProvider>
+    <ContextProvider>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.key}>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/:quiz">
+                <Questions />
+              </Route>
+            </Switch>
+          </AnimatePresence>
+        </div>
+      </ThemeProvider>
+    </ContextProvider>
   );
 }
 

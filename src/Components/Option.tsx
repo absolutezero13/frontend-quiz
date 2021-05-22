@@ -1,5 +1,5 @@
-import { truncateSync } from "fs";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { context } from "../Context/Context";
 
 interface Option {
   _id: string;
@@ -9,24 +9,21 @@ interface Option {
 
 interface Props {
   option: Option;
-  isDisabled: boolean;
-  setPoints: (arg: any) => any;
-  setIsDisabled: (arg: boolean) => void;
-  setIsModalOpen: (arg: boolean) => void;
-  setIsCorrect: (arg: boolean) => void;
 }
 
-const Option: React.FC<Props> = ({
-  option,
-  isDisabled,
-  setIsDisabled,
-  setIsModalOpen,
-  setIsCorrect,
-  setPoints,
-}) => {
+const Option: React.FC<Props> = ({ option }) => {
   const [optionBgColor, setOptionBgColor] = useState("black");
 
+  const {
+    isDisabled,
+    setIsDisabled,
+    setIsModalOpen,
+    setIsCorrect,
+    setPoints,
+  } = useContext(context);
+
   const answerQuestion = () => {
+    console.log("answerr!");
     setIsDisabled(true);
     setIsCorrect(option.isCorrect);
     if (option.isCorrect) {

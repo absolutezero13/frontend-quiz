@@ -1,20 +1,15 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import AnswerModal from "../Components/AnswerModal";
 import Option from "../Components/Option";
+import { context } from "../Context/Context";
 import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
 import javascriptIcon from "./../assets/javascript.png";
 
 interface ParamTypes {
   quiz: string;
-}
-
-interface Question {
-  question: string;
-  answers: any[];
-  isCorrect: boolean;
 }
 
 const variants = {
@@ -30,14 +25,20 @@ const variants = {
 };
 
 const Questions: React.FC = () => {
-  const [questions, setQuestions] = useState<Question[]>();
-  const [questionNumber, setQuestionNumber] = useState<number>(1);
-  const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [points, setPoints] = useState(0);
-
-  const history = useHistory();
-  const [isDisabled, setIsDisabled] = useState(false);
+  const {
+    questions,
+    setQuestions,
+    questionNumber,
+    setQuestionNumber,
+    isCorrect,
+    setIsCorrect,
+    isModalOpen,
+    setIsModalOpen,
+    points,
+    setPoints,
+    isDisabled,
+    setIsDisabled,
+  } = useContext(context);
 
   const params = useParams<ParamTypes>();
 
@@ -89,31 +90,15 @@ const Questions: React.FC = () => {
           </div>
 
           <div className="questions__question__options">
-            {questions[questionNumber].answers.map((option) => {
-              return (
-                <Option
-                  isDisabled={isDisabled}
-                  setIsCorrect={setIsCorrect}
-                  setIsDisabled={setIsDisabled}
-                  setIsModalOpen={setIsModalOpen}
-                  setPoints={setPoints}
-                  key={option._id}
-                  option={option}
-                />
-              );
+            {questions[questionNumber].answers.map((option: any) => {
+              return <Option key={option._id} option={option} />;
             })}
           </div>
         </div>
       ) : (
         <p>Loading...</p>
       )}
-      <AnswerModal
-        setIsModalOpen={setIsModalOpen}
-        setQuestionNumber={setQuestionNumber}
-        isCorrect={isCorrect}
-        isModalOpen={isModalOpen}
-        setIsDisabled={setIsDisabled}
-      />
+      <AnswerModal />
     </motion.div>
   );
 };
