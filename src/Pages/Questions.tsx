@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import { useTimer } from "react-timer-hook";
 import AnswerModal from "../Components/AnswerModal";
 import Option from "../Components/Option";
 import { context } from "../Context/Context";
@@ -37,6 +38,19 @@ const Questions: React.FC = () => {
     points,
     isDisabled,
   } = useContext(context);
+
+  // Timer
+
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 30);
+  const { seconds, start, pause, restart } = useTimer({
+    expiryTimestamp: +time,
+    onExpire: () => console.log("onExpire called"),
+  });
+
+  useEffect(() => {
+    start();
+  }, []);
 
   const params = useParams<ParamTypes>();
 
@@ -87,6 +101,7 @@ const Questions: React.FC = () => {
       exit="exit"
       className="questions"
     >
+      <h1> {seconds} </h1>
       <div className="questions__icon">
         <img
           width={128}

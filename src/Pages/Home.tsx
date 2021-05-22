@@ -3,6 +3,7 @@ import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTimer } from "react-timer-hook";
 import { context } from "../Context/Context";
 import iconCss3 from "./../assets/css.png";
 import iconHtml from "./../assets/html.png";
