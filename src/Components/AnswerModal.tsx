@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import IconAnswer from "./IconAnswer";
 import { motion } from "framer-motion";
 import Modal from "react-modal";
 import { Button } from "@material-ui/core";
 import { context } from "../Context/Context";
+import { useHistory } from "react-router";
 
 const modalStyles = {
   overlay: {
@@ -25,20 +26,27 @@ const modalStyles = {
 const AnswerModal = () => {
   const {
     isModalOpen,
-    isCorrect,
     setQuestionNumber,
     setIsModalOpen,
     setIsDisabled,
+    questions,
+    questionNumber,
   } = useContext(context);
 
+  const history = useHistory();
+
   const handleNextQuestion = () => {
-    setIsDisabled(false);
     setIsModalOpen(false);
-    setQuestionNumber((prevNumber: number) => prevNumber + 1);
+    setIsDisabled(false);
+    if (questions.length === questionNumber) {
+      history.push("/");
+    } else {
+      setQuestionNumber((prevNumber: number) => prevNumber + 1);
+    }
   };
 
   return (
-    <Modal style={modalStyles} isOpen={isModalOpen}>
+    <Modal style={modalStyles} ariaHideApp={false} isOpen={isModalOpen}>
       <div
         style={{
           display: "flex",
@@ -58,7 +66,11 @@ const AnswerModal = () => {
             marginTop: "1rem",
           }}
         >
-          Next Question
+          {questions
+            ? questions.length === questionNumber
+              ? "See The Results"
+              : "Next Question"
+            : null}
         </Button>
       </div>
     </Modal>

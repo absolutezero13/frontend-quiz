@@ -20,10 +20,10 @@ const Option: React.FC<Props> = ({ option }) => {
     setIsModalOpen,
     setIsCorrect,
     setPoints,
+    points,
   } = useContext(context);
 
   const answerQuestion = () => {
-    console.log("answerr!");
     setIsDisabled(true);
     setIsCorrect(option.isCorrect);
     if (option.isCorrect) {
@@ -39,7 +39,7 @@ const Option: React.FC<Props> = ({ option }) => {
   return (
     <button
       onClick={answerQuestion}
-      disabled={isDisabled} //disable func için
+      disabled={isDisabled}
       style={{ backgroundColor: optionBgColor }}
       className="questions__question__option"
       key={option._id}

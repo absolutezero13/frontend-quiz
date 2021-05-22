@@ -31,12 +31,6 @@ const variants = {
 };
 
 const Home: React.FC = () => {
-  const { setQuestionNumber } = useContext(context);
-
-  useEffect(() => {
-    setQuestionNumber(1);
-  }, []);
-
   const quizes = [
     {
       name: "HTML",
