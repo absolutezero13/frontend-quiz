@@ -21,9 +21,11 @@ const Option: React.FC<Props> = ({ option }) => {
     setIsCorrect,
     setPoints,
     points,
+    pause,
   } = useContext(context);
 
   const answerQuestion = () => {
+    pause();
     setIsDisabled(true);
     setIsCorrect(option.isCorrect);
     if (option.isCorrect) {

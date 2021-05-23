@@ -37,20 +37,9 @@ const Questions: React.FC = () => {
     isModalOpen,
     points,
     isDisabled,
+    seconds,
+    start,
   } = useContext(context);
-
-  // Timer
-
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 30);
-  const { seconds, start, pause, restart } = useTimer({
-    expiryTimestamp: +time,
-    onExpire: () => console.log("onExpire called"),
-  });
-
-  useEffect(() => {
-    start();
-  }, []);
 
   const params = useParams<ParamTypes>();
 
@@ -84,6 +73,10 @@ const Questions: React.FC = () => {
     setIsDisabled(false);
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    start();
+  }, []);
 
   useEffect(() => {
     return () => exitTestOnUnmount();

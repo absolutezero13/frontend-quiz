@@ -1,15 +1,24 @@
 import React, { useContext } from "react";
 import CheckCircleOutlinedIcon from "@material-ui/icons/CheckCircleOutlined";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
+import TimerOffIcon from "@material-ui/icons/TimerOff";
 import { context } from "../Context/Context";
 
 const IconAnswer = () => {
-  const { isCorrect } = useContext(context);
+  const { isCorrect, isTimeOff } = useContext(context);
 
   return (
     <div className="icon-answer">
       <div>
-        {isCorrect ? (
+        {isTimeOff ? (
+          <div className="icons">
+            <p> Time is up! </p>
+            <TimerOffIcon
+              className="icons__icon"
+              style={{ width: 80, height: 80 }}
+            />
+          </div>
+        ) : isCorrect ? (
           <div className="icons">
             <p> Correct </p>
             <CheckCircleOutlinedIcon
