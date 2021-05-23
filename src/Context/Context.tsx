@@ -26,7 +26,7 @@ export const ContextProvider = ({ children }: any) => {
   });
 
   const [questions, setQuestions] = useState<Question[]>();
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState<number>(0);
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
