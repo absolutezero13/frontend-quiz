@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { context } from "../Context/Context";
 import { motion } from "framer-motion";
 import { Button, makeStyles, TextField } from "@material-ui/core";
+import { questionVariants } from "../helpers/helpers";
 
 const useStyles = makeStyles({
   input: {
@@ -20,22 +21,28 @@ const useStyles = makeStyles({
 
 const Results = () => {
   const classes = useStyles();
-
   const { points, questions, questionNumber } = useContext(context);
   const history = useHistory();
 
-  //   useEffect(() => {
-  //     if (!questions || questions.length !== questionNumber) {
-  //       history.push("/");
-  //     }
-  //   }, []);
+  useEffect(() => {
+    if (!questions || questions.length !== questionNumber) {
+      history.push("/");
+    }
+  }, []);
 
   return (
-    <motion.div>
+    <motion.div
+      variants={questionVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {true && (
-        <div>
-          <h2>You scored {points} out of lol!</h2>
-          <h3> You can save your score to see your rank!</h3>
+        <div className="results">
+          <div className="results__titles">
+            <h2>You scored {points} out of lol!</h2>
+            <h3> You can save your score to see your rank!</h3>
+          </div>
           <TextField
             InputLabelProps={{
               className: classes.input,
@@ -48,8 +55,7 @@ const Results = () => {
             label="Name"
           />
           <Button variant="outlined" className={classes.button}>
-            {" "}
-            Send{" "}
+            Send
           </Button>
         </div>
       )}

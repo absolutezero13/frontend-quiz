@@ -16,8 +16,7 @@ export const ContextProvider = ({ children }: any) => {
 
   const createTimeStamp = () => {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 5);
-
+    time.setSeconds(time.getSeconds() + 30);
     return +time;
   };
 
@@ -25,8 +24,6 @@ export const ContextProvider = ({ children }: any) => {
     expiryTimestamp: createTimeStamp(),
     onExpire: () => onTimeExpire(),
   });
-
-  console.log(seconds);
 
   const [questions, setQuestions] = useState<Question[]>();
   const [points, setPoints] = useState(0);

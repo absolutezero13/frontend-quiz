@@ -1,28 +1,10 @@
 import { Card, Icon, IconButton } from "@material-ui/core";
 import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useTimer } from "react-timer-hook";
-import { context } from "../Context/Context";
-import iconCss3 from "./../assets/css.png";
-import iconHtml from "./../assets/html.png";
-import iconJs from "./../assets/javascript.png";
-
-const componentVariants = {
-  initial: {
-    x: "-100vw",
-  },
-  animate: {
-    x: 0,
-  },
-  exit: {
-    x: "-100vw",
-    transtion: {
-      duration: 1,
-    },
-  },
-};
+import { quizInfo } from "../helpers/helpers";
+import { homeVariants } from "../helpers/helpers";
 
 const variants = {
   initial: { x: -1500 },
@@ -32,27 +14,9 @@ const variants = {
 };
 
 const Home: React.FC = () => {
-  const quizes = [
-    {
-      name: "HTML",
-      icon: iconHtml,
-      borderColor: "",
-    },
-    {
-      name: "CSS",
-      icon: iconCss3,
-      borderColor: "",
-    },
-    {
-      name: "JAVASCRIPT",
-      icon: iconJs,
-      borderColor: "",
-    },
-  ];
-
   return (
     <motion.div
-      variants={componentVariants}
+      variants={homeVariants}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -64,7 +28,7 @@ const Home: React.FC = () => {
       </div>
 
       <div className="home__quizes">
-        {quizes.map((quiz, i) => {
+        {quizInfo.map((quiz, i) => {
           return (
             <Link
               style={{ textDecoration: "none" }}

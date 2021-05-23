@@ -9,22 +9,11 @@ import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
 import javascriptIcon from "./../assets/javascript.png";
 import TimerIcon from "@material-ui/icons/Timer";
+import { questionVariants } from "../helpers/helpers";
 
 interface ParamTypes {
   quiz: string;
 }
-
-const variants = {
-  initial: {
-    x: "100vw",
-  },
-  animate: {
-    x: 0,
-  },
-  exit: {
-    x: "100vw",
-  },
-};
 
 const Questions: React.FC = () => {
   const {
@@ -60,18 +49,6 @@ const Questions: React.FC = () => {
       console.log(err);
     }
   };
-
-  console.log(
-    "points",
-    points,
-    "Question number",
-    questionNumber,
-    "disabled",
-    isDisabled,
-    "modaloepn",
-    isModalOpen
-  );
-
   const exitTestOnUnmount = () => {
     setQuestionNumber(1);
     setIsDisabled(false);
@@ -95,7 +72,7 @@ const Questions: React.FC = () => {
 
   return (
     <motion.div
-      variants={variants}
+      variants={questionVariants}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -103,7 +80,10 @@ const Questions: React.FC = () => {
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <TimerIcon />
-        <h1 style={{ marginLeft: 10 }}> {seconds} </h1>
+        <h1 style={{ marginLeft: 10, color: seconds > 5 ? "white" : "red" }}>
+          {" "}
+          {seconds}{" "}
+        </h1>
       </div>
       <div className="questions__icon">
         <img
