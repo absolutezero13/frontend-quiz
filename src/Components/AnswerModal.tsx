@@ -22,8 +22,6 @@ const modalStyles = {
     backgroundColor: "rgba(29, 26, 26, 0.584)",
   },
 };
-const time = new Date();
-time.setSeconds(time.getSeconds() + 5);
 
 const AnswerModal = () => {
   const {
@@ -35,13 +33,13 @@ const AnswerModal = () => {
     questionNumber,
     setIsTimeOff,
     restart,
-    time,
+    createTimeStamp,
   } = useContext(context);
 
   const history = useHistory();
 
   const handleNextQuestion = () => {
-    restart(+time);
+    restart(createTimeStamp());
     setIsTimeOff(false);
     setIsModalOpen(false);
     setIsDisabled(false);

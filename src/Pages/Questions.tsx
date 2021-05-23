@@ -8,6 +8,7 @@ import { context } from "../Context/Context";
 import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
 import javascriptIcon from "./../assets/javascript.png";
+import TimerIcon from "@material-ui/icons/Timer";
 
 interface ParamTypes {
   quiz: string;
@@ -39,6 +40,10 @@ const Questions: React.FC = () => {
     isDisabled,
     seconds,
     start,
+    setIsTimeOff,
+    pause,
+    restart,
+    createTimeStamp,
   } = useContext(context);
 
   const params = useParams<ParamTypes>();
@@ -72,6 +77,8 @@ const Questions: React.FC = () => {
     setQuestionNumber(1);
     setIsDisabled(false);
     setIsModalOpen(false);
+    setIsTimeOff(false);
+    restart(createTimeStamp(), false);
   };
 
   useEffect(() => {
@@ -94,7 +101,10 @@ const Questions: React.FC = () => {
       exit="exit"
       className="questions"
     >
-      <h1> {seconds} </h1>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <TimerIcon />
+        <h1 style={{ marginLeft: 10 }}> {seconds} </h1>
+      </div>
       <div className="questions__icon">
         <img
           width={128}

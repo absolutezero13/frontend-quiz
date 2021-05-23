@@ -14,12 +14,19 @@ export const ContextProvider = ({ children }: any) => {
     setIsTimeOff(true);
   };
 
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 5);
+  const createTimeStamp = () => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 5);
+
+    return +time;
+  };
+
   const { seconds, start, pause, restart } = useTimer({
-    expiryTimestamp: +time,
+    expiryTimestamp: createTimeStamp(),
     onExpire: () => onTimeExpire(),
   });
+
+  console.log(seconds);
 
   const [questions, setQuestions] = useState<Question[]>();
   const [points, setPoints] = useState(0);
@@ -50,7 +57,7 @@ export const ContextProvider = ({ children }: any) => {
         restart,
         isTimeOff,
         setIsTimeOff,
-        time,
+        createTimeStamp,
       }}
     >
       {children}
