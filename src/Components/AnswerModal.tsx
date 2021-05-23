@@ -44,7 +44,7 @@ const AnswerModal = () => {
     setIsModalOpen(false);
     setIsDisabled(false);
     if (questions.length === questionNumber) {
-      history.push("/");
+      history.push("/results");
     } else {
       setQuestionNumber((prevNumber: number) => prevNumber + 1);
     }

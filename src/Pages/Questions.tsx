@@ -73,7 +73,6 @@ const Questions: React.FC = () => {
   );
 
   const exitTestOnUnmount = () => {
-    setPoints(0);
     setQuestionNumber(1);
     setIsDisabled(false);
     setIsModalOpen(false);
@@ -82,6 +81,7 @@ const Questions: React.FC = () => {
   };
 
   useEffect(() => {
+    setPoints(0);
     start();
   }, []);
 

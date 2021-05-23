@@ -9,6 +9,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Questions from "./Pages/Questions";
 import { AnimatePresence } from "framer-motion";
 import { ContextProvider } from "./Context/Context";
+import Results from "./Pages/Results";
 
 const theme = createMuiTheme({
   palette: {
@@ -28,6 +29,9 @@ function App() {
             <Switch location={location} key={location.key}>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route exact path="/results">
+                <Results />
               </Route>
               <Route exact path="/:quiz">
                 <Questions />
