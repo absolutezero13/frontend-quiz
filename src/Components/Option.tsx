@@ -20,7 +20,6 @@ const Option: React.FC<Props> = ({ option }) => {
     setIsModalOpen,
     setIsCorrect,
     setPoints,
-    points,
     pause,
   } = useContext(context);
 
