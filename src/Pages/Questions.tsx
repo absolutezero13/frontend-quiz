@@ -79,7 +79,10 @@ const Questions: React.FC = () => {
       className="questions"
     >
       <div style={{ display: "flex", alignItems: "center" }}>
-        <TimerIcon />
+        <TimerIcon
+          style={{ height: 40, width: 40 }}
+          color={seconds < 5 ? "secondary" : "primary"}
+        />
         <h1 style={{ marginLeft: 10, color: seconds > 5 ? "white" : "red" }}>
           {" "}
           {seconds}{" "}

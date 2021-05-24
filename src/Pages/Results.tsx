@@ -28,6 +28,7 @@ const useStyles = makeStyles({
 
 const Results = () => {
   const [name, setName] = useState("");
+  const [error, setError] = useState(false);
   const classes = useStyles();
   const { points, questions, questionNumber } = useContext(context);
   const history = useHistory();
@@ -37,21 +38,26 @@ const Results = () => {
   //     history.push("/");
   //   }
   // }, []);
+  //Asd
 
   const sendScore = async () => {
-    await fetch("http://localhost:3001/quizquestions/sendquizscore", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        score: points,
-      }),
-    }).then(() => {
-      console.log("sent!");
-      history.push("/");
-    });
+    if (name) {
+      await fetch("http://localhost:3001/quizquestions/sendquizscore", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          score: points,
+        }),
+      }).then(() => {
+        console.log("sent!");
+        history.push("/");
+      });
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -68,6 +74,7 @@ const Results = () => {
             <h3> You can send your score to see your rank!</h3>
           </div>
           <TextField
+            error={error}
             onChange={(e) => setName(e.target.value)}
             value={name}
             InputLabelProps={{
@@ -80,6 +87,7 @@ const Results = () => {
             rowsMax={2}
             label="Name"
           />
+          {error && <p style={{ color: "red" }}>Please insert a name.</p>}
           <Button onClick={sendScore} className={classes.button}>
             Send
           </Button>

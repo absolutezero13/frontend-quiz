@@ -36,6 +36,7 @@ const AnswerModal = () => {
   return (
     <Modal style={modalStyles} ariaHideApp={false} isOpen={isModalOpen}>
       <div
+        className="modal-content"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -46,7 +47,6 @@ const AnswerModal = () => {
         <Button
           variant="outlined"
           onClick={handleNextQuestion}
-          className="icon-button"
           style={{
             backgroundColor: "white",
             fontFamily: "inherit",

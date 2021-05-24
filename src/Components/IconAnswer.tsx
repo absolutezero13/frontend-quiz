@@ -13,24 +13,18 @@ const IconAnswer = () => {
         {isTimeOff ? (
           <div className="icons">
             <p> Time is up! </p>
-            <TimerOffIcon
-              className="icons__icon"
-              style={{ width: 80, height: 80 }}
-            />
+            <TimerOffIcon style={{ width: 80, height: 80 }} />
           </div>
         ) : isCorrect ? (
           <div className="icons">
             <p> Correct </p>
-            <CheckCircleOutlinedIcon
-              className="icons__icon"
-              style={{ width: 80, height: 80 }}
-            />
+            <CheckCircleOutlinedIcon style={{ width: 80, height: 80 }} />
           </div>
         ) : (
           <div className="icons">
             <p> Wrong </p>
             <CancelOutlinedIcon
-              className="icons__icon"
+              color="secondary"
               style={{ width: 80, height: 80 }}
             />
           </div>

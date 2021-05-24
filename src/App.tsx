@@ -10,12 +10,14 @@ import Questions from "./Pages/Questions";
 import { AnimatePresence } from "framer-motion";
 import { ContextProvider } from "./Context/Context";
 import Results from "./Pages/Results";
+import { red } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "rgb(230, 227, 227)",
     },
+    secondary: { main: red[500] },
   },
 });
 
