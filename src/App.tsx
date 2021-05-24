@@ -19,6 +19,9 @@ const theme = createMuiTheme({
     },
     secondary: { main: red[500] },
   },
+  typography: {
+    fontFamily: "Source Code Pro",
+  },
 });
 
 function App() {

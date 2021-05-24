@@ -3,8 +3,14 @@ import CheckCircleOutlinedIcon from "@material-ui/icons/CheckCircleOutlined";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import TimerOffIcon from "@material-ui/icons/TimerOff";
 import { context } from "../Context/Context";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  icon: { width: 80, height: 80 },
+});
 
 const IconAnswer = () => {
+  const styles = useStyles();
   const { isCorrect, isTimeOff } = useContext(context);
 
   return (
@@ -13,20 +19,19 @@ const IconAnswer = () => {
         {isTimeOff ? (
           <div className="icons">
             <p> Time is up! </p>
-            <TimerOffIcon style={{ width: 80, height: 80 }} />
+            <TimerOffIcon className={styles.icon} />
           </div>
         ) : isCorrect ? (
           <div className="icons">
             <p> Correct </p>
-            <CheckCircleOutlinedIcon style={{ width: 80, height: 80 }} />
+            <CheckCircleOutlinedIcon className={styles.icon} />
           </div>
         ) : (
           <div className="icons">
-            <p> Wrong </p>
-            <CancelOutlinedIcon
-              color="secondary"
-              style={{ width: 80, height: 80 }}
-            />
+            <Typography variant="h3" color="secondary">
+              Wrong
+            </Typography>
+            <CancelOutlinedIcon color="secondary" className={styles.icon} />
           </div>
         )}
       </div>
