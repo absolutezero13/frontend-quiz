@@ -1,0 +1,24 @@
+.ranks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6rem;
+
+  &__table {
+    margin-top: 5rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    padding: 0rem 1rem;
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
