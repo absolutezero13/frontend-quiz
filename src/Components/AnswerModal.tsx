@@ -3,9 +3,12 @@ import IconAnswer from "./IconAnswer";
 import Modal from "react-modal";
 import { Button } from "@material-ui/core";
 import { context } from "../Context/Context";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { modalStyles } from "../helpers/helpers";
 
+interface Params {
+  quiz: string;
+}
 const AnswerModal = () => {
   const {
     isModalOpen,
@@ -20,6 +23,7 @@ const AnswerModal = () => {
   } = useContext(context);
 
   const history = useHistory();
+  const params = useParams<Params>();
 
   const handleNextQuestion = () => {
     restart(createTimeStamp());
@@ -27,7 +31,10 @@ const AnswerModal = () => {
     setIsModalOpen(false);
     setIsDisabled(false);
     if (questions.length === questionNumber) {
-      history.push("/results");
+      history.push({
+        pathname: "/results",
+        state: params.quiz,
+      });
     } else {
       setQuestionNumber((prevNumber: number) => prevNumber + 1);
     }

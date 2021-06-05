@@ -24,24 +24,19 @@ const Questions: React.FC = () => {
     setQuestionNumber,
     setIsDisabled,
     setIsModalOpen,
-    isModalOpen,
-    points,
-    isDisabled,
     seconds,
     start,
     setIsTimeOff,
-    pause,
     restart,
     createTimeStamp,
+    apiBase,
   } = useContext(context);
 
   const params = useParams<ParamTypes>();
 
   const fetchQuestions = async () => {
     try {
-      const data = await fetch(
-        `http://localhost:3001/quizquestions/${params.quiz}`
-      );
+      const data = await fetch(`${apiBase}/quizquestions/${params.quiz}`);
       const res = await data.json();
 
       if (res.length > 0) setQuestions(res);

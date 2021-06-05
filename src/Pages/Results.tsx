@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { context } from "../Context/Context";
 import { motion } from "framer-motion";
 import { Button, makeStyles, TextField } from "@material-ui/core";
@@ -26,23 +26,24 @@ const useStyles = makeStyles({
   },
 });
 
-const Results = () => {
+const Results = (props: any) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const classes = useStyles();
-  const { points, questions, questionNumber } = useContext(context);
+  const { points, questions, questionNumber, apiBase } = useContext(context);
   const history = useHistory();
+  const params = useParams();
 
   // useEffect(() => {
+  // // if a user manually type this route
   //   if (!questions || questions.length !== questionNumber) {
   //     history.push("/");
   //   }
   // }, []);
-  //Asd
 
   const sendScore = async () => {
-    if (name) {
-      await fetch("http://localhost:3001/quizquestions/sendquizscore", {
+    if (name && name.length < 15) {
+      await fetch(`${apiBase}/quizquestions/sendquizscore`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,10 +51,11 @@ const Results = () => {
         body: JSON.stringify({
           name,
           score: points,
+          quizType: history.location.state,
         }),
       }).then(() => {
         console.log("sent!");
-        history.push("/");
+        history.push("/ranks");
       });
     } else {
       setError(true);
@@ -74,6 +76,7 @@ const Results = () => {
             <h3> You can send your score to see your rank!</h3>
           </div>
           <TextField
+            autoFocus
             error={error}
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -87,7 +90,7 @@ const Results = () => {
             rowsMax={2}
             label="Name"
           />
-          {error && <p style={{ color: "red" }}>Please insert a name.</p>}
+          {error && <p style={{ color: "red" }}>Please insert a valid name.</p>}
           <Button onClick={sendScore} className={classes.button}>
             Send
           </Button>

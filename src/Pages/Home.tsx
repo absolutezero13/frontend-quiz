@@ -45,7 +45,7 @@ const Home: React.FC = () => {
                 <img width={50} height={50} src={quiz.icon} alt={quiz.name} />
                 <h2>{quiz.name}</h2>
                 <IconButton style={{ marginLeft: "auto" }}>
-                  <ArrowForwardIos color="primary" />
+                  <ArrowForwardIos fontSize="large" color="primary" />
                 </IconButton>
               </motion.div>
             </Link>
