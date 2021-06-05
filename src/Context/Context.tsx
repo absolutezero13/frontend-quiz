@@ -25,6 +25,8 @@ export const ContextProvider = ({ children }: any) => {
     onExpire: () => onTimeExpire(),
   });
 
+  const apiBase = "http://localhost:3001";
+
   const [questions, setQuestions] = useState<Question[]>();
   const [points, setPoints] = useState<number>(0);
   const [questionNumber, setQuestionNumber] = useState<number>(1);
@@ -55,6 +57,7 @@ export const ContextProvider = ({ children }: any) => {
         isTimeOff,
         setIsTimeOff,
         createTimeStamp,
+        apiBase,
       }}
     >
       {children}
