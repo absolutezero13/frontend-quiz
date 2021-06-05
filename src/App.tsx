@@ -11,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import { ContextProvider } from "./Context/Context";
 import Results from "./Pages/Results";
 import { red } from "@material-ui/core/colors";
+import Ranks from "./Pages/Ranks";
 
 const theme = createMuiTheme({
   palette: {
@@ -34,6 +35,9 @@ function App() {
             <Switch location={location} key={location.key}>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route exact path="/ranks">
+                <Ranks />
               </Route>
               <Route exact path="/results">
                 <Results />
