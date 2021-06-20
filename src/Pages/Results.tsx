@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { context } from "../Context/Context";
 import { motion } from "framer-motion";
+import Loading from "../Components/Loading";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import { questionVariants } from "../helpers/helpers";
 
@@ -10,7 +11,9 @@ const useStyles = makeStyles({
     color: "rgb(230, 227, 227)",
     fontFamily: "Source Code Pro",
     fontSize: "1.6rem",
-    marginTop: "5rem",
+  },
+  label: {
+    fontSize: "1.6rem",
   },
   button: {
     color: "rgba(29, 26, 26, 0.784)",
@@ -34,12 +37,12 @@ const Results = (props: any) => {
   const history = useHistory();
   const params = useParams();
 
-  // useEffect(() => {
-  // // if a user manually type this route
-  //   if (!questions || questions.length !== questionNumber) {
-  //     history.push("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    // if a user manually type this route
+    if (!questions || questions.length !== questionNumber) {
+      setTimeout(() => history.push("/"), 5000);
+    }
+  }, []);
 
   const sendScore = async () => {
     if (name && name.length < 15) {
@@ -75,7 +78,7 @@ const Results = (props: any) => {
       animate="animate"
       exit="exit"
     >
-      {true && (
+      {questions ? (
         <div className="results">
           <div className="results__titles">
             <h2>
@@ -87,10 +90,13 @@ const Results = (props: any) => {
           <TextField
             autoFocus
             error={error}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setError(false);
+              setName(e.target.value);
+            }}
             value={name}
             InputLabelProps={{
-              className: classes.input,
+              className: classes.label,
             }}
             inputProps={{
               className: classes.input,
@@ -103,6 +109,11 @@ const Results = (props: any) => {
           <Button onClick={sendScore} className={classes.button}>
             Send
           </Button>
+        </div>
+      ) : (
+        <div className="redirecting">
+          <Loading />
+          <h1>Redirecting.. </h1>
         </div>
       )}
     </motion.div>
