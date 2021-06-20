@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { context } from "../Context/Context";
 import { quizInfo } from "../helpers/helpers";
 
@@ -8,20 +9,28 @@ interface UserStats {
   score: number;
   __v: number;
 }
+// interface Params {
+
+//   quiz: string
+// }
 
 const Ranks = () => {
   const [userStats, setUserStats] = useState<UserStats[]>();
   const { apiBase } = useContext(context);
+  const history = useHistory();
 
   useEffect(() => {
     getStats();
   }, []);
 
   const getStats = async () => {
-    const res = await fetch(`${apiBase}/quizquestions/getuserstats`);
+    const res = await fetch(
+      `${apiBase}/quizquestions/getuserstats/${history.location.state}`
+    );
     const stats = await res.json();
-
-    setUserStats(stats);
+    setUserStats(
+      stats.sort((a: UserStats, b: UserStats) => (a.score < b.score ? 1 : -1))
+    );
   };
 
   console.log(userStats);

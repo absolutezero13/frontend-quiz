@@ -32,11 +32,10 @@ const Questions: React.FC = () => {
     apiBase,
   } = useContext(context);
 
-  const params = useParams<ParamTypes>();
-
+  const { quiz } = useParams<ParamTypes>();
   const fetchQuestions = async () => {
     try {
-      const data = await fetch(`${apiBase}/quizquestions/${params.quiz}`);
+      const data = await fetch(`${apiBase}/quizquestions/${quiz}`);
       const res = await data.json();
 
       if (res.length > 0) setQuestions(res);
@@ -44,6 +43,7 @@ const Questions: React.FC = () => {
       console.log(err);
     }
   };
+
   const exitTestOnUnmount = () => {
     setQuestionNumber(1);
     setIsDisabled(false);
@@ -79,8 +79,7 @@ const Questions: React.FC = () => {
           color={seconds < 5 ? "secondary" : "primary"}
         />
         <h1 style={{ marginLeft: 10, color: seconds > 5 ? "white" : "red" }}>
-          {" "}
-          {seconds}{" "}
+          {seconds}
         </h1>
       </div>
       <div className="questions__icon">
@@ -88,9 +87,9 @@ const Questions: React.FC = () => {
           width={128}
           height={128}
           src={
-            params.quiz === "html"
+            quiz === "html"
               ? htmlIcon
-              : params.quiz === "css"
+              : quiz === "css"
               ? cssIcon
               : javascriptIcon
           }

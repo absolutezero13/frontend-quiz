@@ -6,8 +6,9 @@
   font-size: 1.6rem;
 
   &__table {
-    margin-top: 5rem;
-    border: 1px solid black;
+    margin-top: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px rgba(148, 146, 146, 0.5);
     display: flex;
     flex-direction: column;
     width: 12rem;

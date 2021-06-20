@@ -55,7 +55,10 @@ const Results = (props: any) => {
         }),
       }).then(() => {
         console.log("sent!");
-        history.push("/ranks");
+        history.push({
+          pathname: "/ranks",
+          state: history.location.state,
+        });
       });
     } else {
       setError(true);
