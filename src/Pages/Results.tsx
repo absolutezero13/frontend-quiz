@@ -72,7 +72,10 @@ const Results = (props: any) => {
       {true && (
         <div className="results">
           <div className="results__titles">
-            <h2>You scored {points} out of lol!</h2>
+            <h2>
+              You scored <span style={{ color: "green" }}>{points}</span> out of{" "}
+              {questions.length} !
+            </h2>
             <h3> You can send your score to see your rank!</h3>
           </div>
           <TextField

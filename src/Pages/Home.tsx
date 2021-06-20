@@ -24,7 +24,6 @@ const Home: React.FC = () => {
     >
       <div className="title">
         <h1>Welcome to the Front End Development Quiz !</h1>
-        <h2> Select a quiz that you want to take ! </h2>
       </div>
 
       <div className="home__quizes">

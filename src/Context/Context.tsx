@@ -25,7 +25,7 @@ export const ContextProvider = ({ children }: any) => {
     onExpire: () => onTimeExpire(),
   });
 
-  const apiBase = "http://localhost:3001";
+  const apiBase = "https://frontend-quiz-app.herokuapp.com";
 
   const [questions, setQuestions] = useState<Question[]>();
   const [points, setPoints] = useState<number>(0);

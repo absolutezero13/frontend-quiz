@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { useTimer } from "react-timer-hook";
 import AnswerModal from "../Components/AnswerModal";
 import Option from "../Components/Option";
+import Loading from "../Components/Loading";
 import { context } from "../Context/Context";
 import cssIcon from "./../assets/css.png";
 import htmlIcon from "./../assets/html.png";
@@ -112,7 +112,7 @@ const Questions: React.FC = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
       <AnswerModal />
     </motion.div>
