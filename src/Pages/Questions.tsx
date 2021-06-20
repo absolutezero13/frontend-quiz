@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router";
 import AnswerModal from "../Components/AnswerModal";
 import Option from "../Components/Option";
 import Loading from "../Components/Loading";
@@ -33,6 +33,7 @@ const Questions: React.FC = () => {
   } = useContext(context);
 
   const { quiz } = useParams<ParamTypes>();
+
   const fetchQuestions = async () => {
     try {
       const data = await fetch(`${apiBase}/quizquestions/${quiz}`);

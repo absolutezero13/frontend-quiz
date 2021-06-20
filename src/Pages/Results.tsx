@@ -57,7 +57,10 @@ const Results = (props: any) => {
         console.log("sent!");
         history.push({
           pathname: "/ranks",
-          state: history.location.state,
+          state: {
+            quizType: history.location.state,
+            name,
+          },
         });
       });
     } else {
