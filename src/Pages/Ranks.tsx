@@ -62,10 +62,7 @@ const Ranks = () => {
 
   console.log(userStats);
   return (
-    <motion.div
-    variants={questionVariants}
-     exit="exit"
-    className="ranks">
+    <motion.div variants={questionVariants} exit="exit" className="ranks">
       <div style={{ display: "flex" }}>
         <motion.h1 variants={variants} animate="animation">
           🏆{" "}
@@ -95,18 +92,17 @@ const Ranks = () => {
                 className="ranks__table__row"
                 key={stat._id}
               >
-                <p  > {index + 1}  </p>
+                <p> {index + 1} </p>
                 {history.location.state &&
-                    stat.name === history.location.state.name && (
-                      <AccountCircleIcon
-                        style={{ marginLeft: "20px",position:"absolute" }}
-                        fontSize="large"
-                        color="inherit"
-                      />
-                    )}
+                  stat.name === history.location.state.name && (
+                    <AccountCircleIcon
+                      style={{ marginLeft: "20px", position: "absolute" }}
+                      fontSize="large"
+                      color="inherit"
+                    />
+                  )}
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <p> {stat.name} </p>
-                 
                 </div>
                 <p> {stat.score} </p>
               </div>

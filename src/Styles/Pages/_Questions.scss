@@ -20,6 +20,9 @@
     &__option {
       width: 50rem;
       font-family: "Source Code Pro", monospace;
+      @media only screen and (max-width: 400px) {
+        width: 40rem;
+      }
 
       border: solid 0.5px $text-color;
       border-radius: 5px;

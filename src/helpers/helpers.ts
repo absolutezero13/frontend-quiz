@@ -51,7 +51,7 @@ export const modalStyles = {
   },
   content: {
     width: "35rem",
-    height: "20rem",
+    // height: "25rem",
     top: "50%",
     left: "50%",
     right: "auto",
