@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Results = (props: any) => {
+const Results: React.FC = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const classes = useStyles();

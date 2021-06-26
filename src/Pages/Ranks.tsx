@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Loading from "../Components/Loading";
 import { context } from "../Context/Context";
-import { homeVariants, questionVariants, quizInfo } from "../helpers/helpers";
+import {  questionVariants,  } from "../helpers/helpers";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Button, makeStyles, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 interface UserStats {

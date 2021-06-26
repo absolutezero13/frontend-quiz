@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import IconAnswer from "./IconAnswer";
 import Modal from "react-modal";
 import { Button } from "@material-ui/core";
@@ -9,7 +9,7 @@ import { modalStyles } from "../helpers/helpers";
 interface Params {
   quiz: string;
 }
-const AnswerModal = () => {
+const AnswerModal: React.FC = () => {
   const {
     isModalOpen,
     setQuestionNumber,
