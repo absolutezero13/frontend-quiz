@@ -40,7 +40,7 @@ const Results = (props: any) => {
   useEffect(() => {
     // if a user manually type this route
     if (!questions || questions.length !== questionNumber) {
-      setTimeout(() => history.push("/"), 5000);
+      setTimeout(() => history.push("/"), 2500);
     }
   }, []);
 
