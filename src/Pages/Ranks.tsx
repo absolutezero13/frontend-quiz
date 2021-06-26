@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
 import { context } from "../Context/Context";
-import { quizInfo } from "../helpers/helpers";
+import { homeVariants, questionVariants, quizInfo } from "../helpers/helpers";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -62,7 +62,10 @@ const Ranks = () => {
 
   console.log(userStats);
   return (
-    <motion.div className="ranks">
+    <motion.div
+    variants={questionVariants}
+     exit="exit"
+    className="ranks">
       <div style={{ display: "flex" }}>
         <motion.h1 variants={variants} animate="animation">
           🏆{" "}
@@ -92,17 +95,18 @@ const Ranks = () => {
                 className="ranks__table__row"
                 key={stat._id}
               >
-                <p> {index + 1} </p>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <p> {stat.name} </p>
-                  {history.location.state &&
+                <p  > {index + 1}  </p>
+                {history.location.state &&
                     stat.name === history.location.state.name && (
                       <AccountCircleIcon
-                        style={{ marginLeft: "15px" }}
+                        style={{ marginLeft: "20px",position:"absolute" }}
                         fontSize="large"
                         color="inherit"
                       />
                     )}
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p> {stat.name} </p>
+                 
                 </div>
                 <p> {stat.score} </p>
               </div>
