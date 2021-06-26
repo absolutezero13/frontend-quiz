@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { context } from "../Context/Context";
 
-interface Option {
+interface OptionInterface {
   _id: string;
   option: string;
   isCorrect: boolean;
 }
 
 interface Props {
-  option: Option;
+  option: OptionInterface;
 }
 
 const Option: React.FC<Props> = ({ option }) => {
