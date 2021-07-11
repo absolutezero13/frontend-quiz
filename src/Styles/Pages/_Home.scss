@@ -49,3 +49,17 @@
     }
   }
 }
+
+.github-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: rgba(223, 219, 219, 0.514);
+  }
+}

@@ -1,10 +1,11 @@
-import { IconButton } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
 import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import { quizInfo } from "../helpers/helpers";
 import { homeVariants } from "../helpers/helpers";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 const variants = {
   initial: { x: -1500 },
@@ -51,6 +52,10 @@ const Home: React.FC = () => {
           );
         })}
       </div>
+      <a className="github-link" href="https://www.github.com/absolutezero13">
+        <p style={{ marginRight: 10 }}> Developer </p>
+        <GitHubIcon fontSize="large" />
+      </a>
     </motion.div>
   );
 };
