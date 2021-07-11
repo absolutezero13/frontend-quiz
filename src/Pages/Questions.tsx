@@ -38,7 +38,7 @@ const Questions: React.FC = () => {
     try {
       const data = await fetch(`${apiBase}/quizquestions/${quiz}`);
       const res = await data.json();
-
+      start();
       if (res.length > 0) setQuestions(res);
     } catch (err) {
       console.log(err);
@@ -55,7 +55,6 @@ const Questions: React.FC = () => {
 
   useEffect(() => {
     setPoints(0);
-    start();
   }, []);
 
   useEffect(() => {
