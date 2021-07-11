@@ -71,6 +71,17 @@ const Results: React.FC = () => {
     }
   };
 
+  const data01 = [
+    {
+      name: "True",
+      value: 4,
+    },
+    {
+      name: "False",
+      value: 1,
+    },
+  ];
+
   return (
     <motion.div
       variants={questionVariants}
