@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Loading from "../Components/Loading";
 import { context } from "../Context/Context";
-import {  questionVariants,  } from "../helpers/helpers";
+import { questionVariants } from "../helpers/helpers";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -59,7 +59,6 @@ const Ranks = () => {
     );
   };
 
-  console.log(userStats);
   return (
     <motion.div variants={questionVariants} exit="exit" className="ranks">
       <div style={{ display: "flex" }}>

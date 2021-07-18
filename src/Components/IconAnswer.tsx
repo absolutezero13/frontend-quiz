@@ -6,7 +6,7 @@ import { context } from "../Context/Context";
 import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  icon: { width: 80, height: 80 },
+  icon: { width: 40, height: 40, marginLeft: 20 },
 });
 
 const IconAnswer = () => {
@@ -23,7 +23,7 @@ const IconAnswer = () => {
           </div>
         ) : isCorrect ? (
           <div className="icons">
-            <p> Correct </p>
+            <Typography variant="h3">Correct</Typography>
             <CheckCircleOutlinedIcon className={styles.icon} />
           </div>
         ) : (

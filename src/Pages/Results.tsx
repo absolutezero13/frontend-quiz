@@ -56,7 +56,6 @@ const Results: React.FC = () => {
           quizType: history.location.state,
         }),
       }).then(() => {
-        console.log("sent!");
         history.push({
           pathname: "/ranks",
           state: {

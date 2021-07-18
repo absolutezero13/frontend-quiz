@@ -51,7 +51,7 @@ const AnswerModal: React.FC = () => {
             backgroundColor: "white",
             fontFamily: "inherit",
             fontSize: "1.6rem",
-            marginTop: "1rem",
+            marginTop: "2.5rem",
           }}
         >
           {questions
