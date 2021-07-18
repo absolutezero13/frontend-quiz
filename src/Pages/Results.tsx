@@ -35,7 +35,6 @@ const Results: React.FC = () => {
   const classes = useStyles();
   const { points, questions, questionNumber, apiBase } = useContext(context);
   const history = useHistory();
-  const params = useParams();
 
   useEffect(() => {
     // if a user manually type this route

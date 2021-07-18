@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { context } from "../Context/Context";
 
@@ -11,8 +12,14 @@ interface Props {
   option: OptionInterface;
 }
 
+const variants = {
+  hover: {
+    backgroundColor: "rgba(29, 26, 26, 0.2)",
+  },
+};
+
 const Option: React.FC<Props> = ({ option }) => {
-  const [optionBgColor, setOptionBgColor] = useState("black");
+  const [optionBgColor, setOptionBgColor] = useState("rgb(29, 26, 26)");
 
   const {
     isDisabled,
@@ -38,7 +45,9 @@ const Option: React.FC<Props> = ({ option }) => {
   };
 
   return (
-    <button
+    <motion.button
+      variants={variants}
+      whileHover="hover"
       onClick={answerQuestion}
       disabled={isDisabled}
       style={{ backgroundColor: optionBgColor }}
@@ -46,7 +55,7 @@ const Option: React.FC<Props> = ({ option }) => {
       key={option._id}
     >
       <p style={{ color: "white" }}> {option.option} </p>
-    </button>
+    </motion.button>
   );
 };
 

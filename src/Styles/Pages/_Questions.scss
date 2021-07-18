@@ -9,7 +9,12 @@
   &__question {
     &__question-text {
       font-size: 2rem;
+      display: flex;
+      justify-content: center;
       margin-bottom: 5rem;
+      p {
+        max-width: 80%;
+      }
     }
 
     &__options {
@@ -23,13 +28,12 @@
       @media only screen and (max-width: 400px) {
         width: 40rem;
       }
-
       border: solid 0.5px $text-color;
       border-radius: 5px;
       margin-bottom: 1.5rem;
       cursor: pointer;
       &:hover {
-        background-color: lighten($bg-color, 1%);
+        background-color: wheat;
       }
     }
   }

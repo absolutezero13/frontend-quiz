@@ -1,4 +1,4 @@
-import { IconButton, Typography } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { ArrowForwardIos } from "@material-ui/icons";
 import { motion } from "framer-motion";
 import React from "react";
