@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
 import { context } from "../Context/Context";
 import { questionVariants } from "../helpers/helpers";
@@ -30,15 +30,14 @@ const variants = {
   },
 };
 
-interface HistoryTypes {
-  quizType: string;
-  name: string;
-}
-
 const Ranks = () => {
   const [userStats, setUserStats] = useState<UserStats[]>();
   const { apiBase } = useContext(context);
   const params = useParams();
+  const location = useLocation();
+  console.log({ location });
+  const { quizType } = location.state;
+
   console.log(params);
   useEffect(() => {
     getStats();
@@ -46,7 +45,7 @@ const Ranks = () => {
 
   const getStats = async () => {
     const res = await fetch(
-      `${apiBase}/quizquestions/getuserstats/${params.quizType}`
+      `${apiBase}/quizquestions/getuserstats/${quizType}`
     );
     const stats = await res.json();
     setUserStats(
@@ -88,14 +87,13 @@ const Ranks = () => {
                 key={stat._id}
               >
                 <p> {index + 1} </p>
-                {history.location.state &&
-                  stat.name === history.location.state.name && (
-                    <AccountCircle
-                      style={{ marginLeft: "20px", position: "absolute" }}
-                      fontSize="large"
-                      color="inherit"
-                    />
-                  )}
+                {location.state.name === stat.name && (
+                  <AccountCircle
+                    style={{ marginLeft: "20px", position: "absolute" }}
+                    fontSize="large"
+                    color="inherit"
+                  />
+                )}
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <p> {stat.name} </p>
                 </div>

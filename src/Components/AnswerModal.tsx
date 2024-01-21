@@ -7,9 +7,9 @@ import { modalStyles } from "../helpers/helpers";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-interface Params {
-  quiz: string;
-}
+type Params = {
+  quizType: string;
+};
 const AnswerModal: React.FC = () => {
   const {
     isModalOpen,
@@ -34,7 +34,7 @@ const AnswerModal: React.FC = () => {
     setIsModalOpen(false);
     setIsDisabled(false);
     if (questions.length === questionNumber) {
-      navigate(`/results/${params.quiz}`, { state: params.quiz });
+      navigate(`/results/${params.quizType}`, { state: params.quizType });
     } else {
       setQuestionNumber((prevNumber: number) => prevNumber + 1);
     }

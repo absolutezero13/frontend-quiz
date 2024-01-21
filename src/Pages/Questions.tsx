@@ -11,9 +11,9 @@ import javascriptIcon from "./../assets/javascript.png";
 import { Timer } from "@mui/icons-material";
 import { questionVariants } from "../helpers/helpers";
 
-interface ParamTypes {
+type ParamTypes = {
   quizType: string;
-}
+};
 
 const Questions: React.FC = () => {
   const {
@@ -51,6 +51,7 @@ const Questions: React.FC = () => {
     setIsModalOpen(false);
     setIsTimeOff(false);
     restart(createTimeStamp(), false);
+    setQuestions(undefined);
   };
 
   useEffect(() => {

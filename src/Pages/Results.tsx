@@ -35,7 +35,7 @@ const Results: React.FC = () => {
   const [error, setError] = useState(false);
   const { points, questions, questionNumber, apiBase } = useContext(context);
   const navigate = useNavigate();
-  const params = useParams<{ quiz: string }>();
+  const params = useParams<{ quizType: string }>();
 
   useEffect(() => {
     // if a user manually type this route
@@ -54,26 +54,20 @@ const Results: React.FC = () => {
         body: JSON.stringify({
           name,
           score: points,
-          quizType: params.quiz,
+          quizType: params.quizType,
         }),
       }).then(() => {
-        navigate(`/ranks/${params.quizType}`);
+        navigate(`/ranks/${params.quizType}`, {
+          state: {
+            quizType: params.quizType,
+            name,
+          },
+        });
       });
     } else {
       setError(true);
     }
   };
-
-  const data01 = [
-    {
-      name: "True",
-      value: 4,
-    },
-    {
-      name: "False",
-      value: 1,
-    },
-  ];
 
   return (
     <motion.div
