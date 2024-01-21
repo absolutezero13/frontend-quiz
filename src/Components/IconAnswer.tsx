@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { context } from "../Context/Context";
 import { Typography } from "@mui/material";
 import { CheckCircleOutlined as CheckCircleOutlinedIcon } from "@mui/icons-material";
