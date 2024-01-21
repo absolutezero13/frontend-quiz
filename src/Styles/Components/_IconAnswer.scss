@@ -1,0 +1,16 @@
+.icon-answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: space-around;
+
+  p {
+    margin-right: 10px;
+  }
+}

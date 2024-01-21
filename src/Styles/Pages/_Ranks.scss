@@ -1,0 +1,57 @@
+.ranks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  &__title {
+    padding: 0 5rem;
+  }
+
+  &__table {
+    margin-top: 3rem;
+    box-shadow: 0 0 5px 5px rgba(148, 146, 146, 0.5);
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    overflow: hidden;
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+    }
+
+    &:hover {
+      overflow: visible;
+    }
+    &__row {
+      cursor: pointer;
+
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .back-to-main {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $text-color;
+    border: 1px solid $text-color;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    &:hover {
+      background-color: $bg-color;
+    }
+  }
+}
